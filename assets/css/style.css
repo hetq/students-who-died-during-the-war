@@ -1,3 +1,38 @@
+/* _____________ */
+
+:root {
+  /* START BOX  */
+  --box-width-lg: 25%;
+  --box-width-md: 33%;
+  --box-width-sm: 50%;
+  --box-width-xs: 100%;
+  /* ________ */
+  --box-height: 320px;
+  /* ________ */
+  --box-margin: 20px;
+  /* ________ */
+  --box-border-radius: 8px;
+  /* END BOX */
+
+  /* START FONT */
+  --text-color: white;
+  --student-name: 1.4em;
+  --student-info: 1.1em;
+  /* END FONT */
+
+  /* START FONT */
+  --info-background-color: #24232370;
+  /* END FONT */
+
+  /* START STUDENT PHOTO */
+  --photo-blur-on-hover: 10px;
+  --photo-zoom-on-hover: 1.2;
+  --photo-angle-on-hover: 6deg;
+  /* END STUDENT PHOTO */
+}
+
+/* _____________ */
+
 @font-face {
   font-family: ws_semi_light;
   src: url(./weblysleekuisl.ttf);
@@ -32,44 +67,19 @@ img {
   background-repeat: no-repeat;
   width: 100%;
   background-size: cover;
-  height: 322px;
-  border-radius: 8px;
-  box-shadow: 0px 1px 7px #00000063;
+  height: var(--box-height);
+  border-radius: var(--box-border-radius);
   z-index: -1;
   backface-visibility: hidden;
   transform: translateZ(0);
 }
 .box {
-  width: calc(25% - 20px);
+  width: calc(var(--box-width-lg) - var(--box-margin));
   height: 100%;
-  margin: 10px;
-  border-radius: 8px;
+  margin: calc(var(--box-margin) / 2);
+  border-radius: var(--box-border-radius);
   overflow: hidden;
   box-shadow: 0px 2px 7px #00000069;
-}
-.info {
-  opacity: 0;
-  height: 100%;
-  overflow: hidden;
-  display: grid;
-  justify-content: center;
-  padding: 16px;
-  align-items: center;
-  color: white;
-  background-color: #24232370;
-  align-content: center;
-  grid-row-gap: 30px;
-}
-.box:hover .info {
-  opacity: 1;
-}
-.box:hover .photo-box {
-  filter: blur(10px);
-  transform: scale(1.2) rotate(6deg);
-}
-.avatar:hover .photo-box {
-  filter: blur(10px);
-  transform: scale(1.2) rotate(0deg) !important;
 }
 .info {
   position: absolute;
@@ -78,36 +88,60 @@ img {
   right: 0px;
   left: 0px;
   z-index: 1;
+  opacity: 0;
+  height: 100%;
+  overflow: hidden;
+  display: grid;
+  justify-content: center;
+  padding: var(--box-margin);
+  align-items: center;
+  color: var(--text-color);
+  background-color: var(--info-background-color);
+  align-content: center;
+  grid-row-gap: var(--box-margin);
 }
+
 .info > * {
   margin: 0px;
 }
 .info h3 {
-  font-size: 1.4em;
+  font-size: var(--student-name);
 }
 .info p {
-  font-size: 1.1em;
+  font-size: var(--student-info);
+}
+.box:hover .info {
+  opacity: 1;
+}
+.box:hover .photo-box {
+  filter: blur(var(--photo-blur-on-hover));
+  transform: scale(var(--photo-zoom-on-hover))
+    rotate(var(--photo-angle-on-hover));
+  height: calc(var(--box-height) - calc(var(--box-margin) / 2));
+}
+.avatar:hover .photo-box {
+  transform: scale(var(--photo-zoom-on-hover)) rotate(0deg) !important;
 }
 .faculty {
   text-transform: lowercase;
 }
-.avatar .photo-box{
+.avatar .photo-box {
   background-size: 60%;
   background-position: center;
 }
 @media only screen and (max-width: 1200px) {
   .box {
-    width: calc(33% - 20px);
+    width: calc(var(--box-width-md) - var(--box-margin));
   }
 }
 @media only screen and (max-width: 800px) {
   .box {
-    width: calc(50% - 20px);
+    width: calc(var(--box-width-sm) - var(--box-margin));
   }
 }
 
 @media only screen and (max-width: 600px) {
   .box {
-    width: calc(100% - 20px);
+    width: calc(var(--box-width-xs) - var(--box-margin));
   }
 }
