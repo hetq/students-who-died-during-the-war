@@ -1,0 +1,96 @@
+* {
+  box-sizing: border-box;
+  text-align: center;
+  transition: 0.6s;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+}
+img {
+  max-width: 100%;
+}
+.item {
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+#root {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.photo-box {
+  background-repeat: no-repeat;
+  width: 100%;
+  background-size: cover;
+  height: 322px;
+  border-radius: 8px;
+  box-shadow: 0px 1px 7px #00000063;
+  z-index: -1;
+  backface-visibility: hidden;
+}
+.box {
+  width: calc(25% - 20px);
+  height: 100%;
+  margin: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 2px 7px #00000069;
+}
+.info {
+  opacity: 0;
+  height: 100%;
+  overflow: hidden;
+  display: grid;
+  justify-content: center;
+  padding: 16px;
+  align-items: center;
+  color: white;
+  background-color: #5555555c;
+  align-content: center;
+  grid-row-gap: 30px;
+}
+.box:hover .info {
+  opacity: 1;
+}
+.box:hover .photo-box {
+  filter: blur(10px);
+  transform: scale(1.2) rotate(6deg);
+}
+.info {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  z-index: 1;
+}
+.info > * {
+  margin: 0px;
+}
+.info h3 {
+  font-size: 1.4em;
+}
+.info p {
+  font-size: 1.1em;
+}
+.faculty {
+  text-transform: lowercase;
+}
+@media only screen and (max-width: 1200px) {
+  .box {
+    width: calc(33% - 20px);
+  }
+}
+@media only screen and (max-width: 800px) {
+  .box {
+    width: calc(50% - 20px);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .box {
+    width: calc(100% - 20px);
+  }
+}
