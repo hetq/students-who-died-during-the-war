@@ -1,8 +1,11 @@
 $(document).ready(() => {
   DATA.map((i) => {
-    const course = i.course == 1 ? `${i.course}֊ին` : `${i.course}֊րդ`;
+    const course = i.course == 1 ? `${i.course}-ին` : `${i.course}-րդ`;
+    const image = isImageExists(`assets/img/${i.name}.jpg`)
+      ? `${i.name}.jpg`
+      : "male-avatar.png";
     $(`
-            <div class="box">   
+            <div class="box ${image == "male-avatar.png" ? "avatar" : ""}">   
                 <div class="item">
                     <div class="info">
                         <h3>${i.name}</h3>
@@ -15,11 +18,19 @@ $(document).ready(() => {
                     </div>
                     <div 
                         class="photo-box" 
-                        style='background-image:url("assets/img/${i.name}.jpg")'
+                        style='background-image:url("assets/img/${image}")'
                     >
                     </div>
                 </div>
             </div>
         `).appendTo("#root");
+    console.clear();
   });
 });
+
+function isImageExists(imageUrl) {
+  const http = new XMLHttpRequest();
+  http.open("HEAD", imageUrl, false);
+  http.send();
+  return http.status != 404;
+}
