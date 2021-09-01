@@ -1,8 +1,17 @@
+@font-face {
+    font-family: ws_semi_light;
+    src: url(./weblysleekuisl.ttf);
+    font-weight: 400;
+    font-style: normal
+}
 * {
   box-sizing: border-box;
   text-align: center;
   transition: 0.6s;
+  font-family: ws_semi_light;
+
 }
+
 body {
   margin: 0px;
   padding: 0px;
