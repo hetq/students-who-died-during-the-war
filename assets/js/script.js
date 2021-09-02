@@ -24,8 +24,21 @@ $(document).ready(() => {
                 </div>
             </div>
         `).appendTo("#root");
-    console.clear();
   });
+
+  // $('.box').hover(
+  //   function () {
+  //     const p_height = $($(this).find("p")).height();
+  //     const h3_height = $($(this).find("h3")).height();
+  //     $($(this).find("h3")).css(
+  //       "margin-top",
+  //        $(this).height() - p_height + "px"
+  //     );
+  //   },
+  //   function () {
+  //     // out
+  //   }
+  // );
 });
 
 function isImageExists(imageUrl) {

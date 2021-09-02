@@ -16,7 +16,8 @@
 
   /* START FONT */
   --text-color: white;
-  --student-name: 1.4em;
+  --student-name: 1.2em;
+  --student-name-on-hover: 1.3em;
   --student-info: 1.1em;
   /* END FONT */
 
@@ -83,13 +84,13 @@ img {
 }
 .info {
   position: absolute;
-  top: 0px;
+  top: 75%;
   bottom: 0px;
   right: 0px;
   left: 0px;
   z-index: 1;
-  opacity: 0;
-  height: 100%;
+  opacity: 1;
+  height: 25%;
   overflow: hidden;
   display: grid;
   justify-content: center;
@@ -99,6 +100,8 @@ img {
   background-color: var(--info-background-color);
   align-content: center;
   grid-row-gap: var(--box-margin);
+  transition: 0.5s;
+
 }
 
 .info > * {
@@ -106,12 +109,28 @@ img {
 }
 .info h3 {
   font-size: var(--student-name);
-}
+  }
 .info p {
   font-size: var(--student-info);
+  display: none;
 }
 .box:hover .info {
   opacity: 1;
+  top: 0px;
+  align-content: center;
+  transition: 0.5s;
+  height: 100%;
+
+}
+.box:hover .info h3 {
+  font-size: var(--student-name-on-hover);
+
+  /* position: relative;
+  transition: 1s;
+  margin-top: 0px; */
+}
+.box:hover .info p {
+display: block;
 }
 .box:hover .photo-box {
   filter: blur(var(--photo-blur-on-hover));
