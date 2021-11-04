@@ -1,46 +1,48 @@
-$(document).ready(() => {
-  DATA.map((i) => {
-    const course = i.course == 1 ? `${i.course}-ին` : `${i.course}-րդ`;
-    const image = isImageExists(`assets/img/${i.name}.jpg`)
-      ? `${i.name}.jpg`
-      : "male-avatar.png";
-    $(`
-            <div class="box ${image == "male-avatar.png" ? "avatar" : ""}">   
-                <div class="item">
-                    <div class="info">
-                        <h3>${i.name}</h3>
-                        <p> 
-                            <span>Սովորել է</span> 
-                            <span>${i.educationalInstitution}ի</span> 
-                            <span class="faculty">${i.faculty}ի</span> 
-                            <span>${course} կուրսում</span>
-                        </p>
-                    </div>
-                    <div 
-                        class="photo-box" 
-                        style='background-image:url("assets/img/${image}")'
-                    >
-                    </div>
-                </div>
-            </div>
-        `).appendTo("#root");
+  let start = 0;
+  let end = 40;
+  createStudentsBlock(start, end);
+  let isLoading = false;
+  $(window).on("scroll", () => {
+    if (isLoading == false) {
+      if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+        start += 40;
+        end += 40;
+        createStudentsBlock(start, end);
+      }
+    }
   });
+function createStudentsBlock(start, end) {
+  for (let i = start; i < end; i++) {
+    const student = DATA[i];
+    const course =
+      student.course == 1 ? `${student.course}-ին` : `${student.course}-րդ`;
+    let imageLink = `${student.name.replace(/\s+/g, " ").trim()}.jpg`;
+    const image = isImageExists(`assets/img_/${imageLink}`)
+      ? imageLink
+      : "male-avatar.png";
 
-  // $('.box').hover(
-  //   function () {
-  //     const p_height = $($(this).find("p")).height();
-  //     const h3_height = $($(this).find("h3")).height();
-  //     $($(this).find("h3")).css(
-  //       "margin-top",
-  //        $(this).height() - p_height + "px"
-  //     );
-  //   },
-  //   function () {
-  //     // out
-  //   }
-  // );
-});
-
+    $(`
+          <div class="box ${image == "male-avatar.png" ? "avatar" : ""}">   
+              <div class="item">
+                  <div class="info">
+                      <h3>${student.name}</h3>
+                      <p> 
+                          <span>Սովորել է</span> 
+                          <span>${student.educationalInstitution}ի</span> 
+                          <span class="faculty">${student.faculty}ի</span> 
+                          <span>${course} կուրսում</span>
+                      </p>
+                  </div>
+                  <div 
+                      class="photo-box" 
+                      style='background-image:url("assets/img_/${image}")'
+                  >
+                  </div>
+              </div>
+          </div>
+      `).appendTo("#root");
+  }
+}
 function isImageExists(imageUrl) {
   const http = new XMLHttpRequest();
   http.open("HEAD", imageUrl, false);
