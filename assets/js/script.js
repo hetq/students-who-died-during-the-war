@@ -34,8 +34,7 @@ function createStudentsBlock(start, end) {
                       <p> 
                           <span>Սովորել է</span> 
                           <span>
-                            ${student.educationalInstitution}
-                             ${student.course ? 'ի' : ''}
+                            ${student.educationalInstitution}${student.course ? 'ի' : ''}
                           </span> 
                           ${student.course ? `<span class="faculty">${student.faculty}ի</span> 
                           <span>${course} կուրսում</span>` : ''}
